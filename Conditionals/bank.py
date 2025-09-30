@@ -1,4 +1,4 @@
-answer = input("Greeting: ").lower()
+answer = input("Greeting: ").lower().strip()
 if answer.startswith("hello"):
     print("0$")
 elif answer.startswith("h"):

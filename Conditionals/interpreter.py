@@ -1,23 +1,26 @@
-x = input("Enter the first number: ")
-y = input("Enter an operator (+, -, *, /): ")
-z = input("Enter the second number: ")
+expr = input("Expression: ").strip()
 
-if not x.isdigit() or not z.isdigit():
-    print("Error: Both values must be numbers.")
-else:
-    x = int(x)
-    z = int(z)
+if "+" in expr:
+    expr = expr.replace("+", " + ")
+elif "-" in expr:
+    expr = expr.replace("-", " - ")
+elif "*" in expr:
+    expr = expr.replace("*", " * ")
+elif "/" in expr:
+    expr = expr.replace("/", " / ")
 
-    if y == "+":
-        print(f"Result: {x + z}")
-    elif y == "-":
-        print(f"Result: {x - z}")
-    elif y == "*":
-        print(f"Result: {x * z}")
-    elif y == "/":
-        if z == 0:
-            print("Error: Division by zero is not allowed.")
-        else:
-            print(f"Result: {x / z}")
-    else:
-        print("Error: Invalid operator. Use +, -, *, or /.")
+x, operator, z = expr.split()
+
+x = int(x)
+z = int(z)
+
+if operator == "+":
+    result = x + z
+elif operator == "-":
+    result = x - z
+elif operator == "*":
+    result = x * z
+elif operator == "/":
+    result = x / z
+
+print(f"{result:.1f}")
