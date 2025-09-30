@@ -114,14 +114,26 @@
 # print(numbers)
 
 
-def compare(*args):
-    if not args:
-        return "No numbers provided"
-    biggest = args[0]
-    for num in args[1:]:
-        if num > biggest:
-            biggest = num
-    return biggest
+# def compare(*args):
+#     if not args:
+#         return "No numbers provided"
+#     biggest = args[0]
+#     for num in args[1:]:
+#         if num > biggest:
+#             biggest = num
+#     return biggest
 
-numbers = compare(5,20,15,50,55,22)
-print(numbers)
+# numbers = compare(5,20,15,50,55,22)
+# print(numbers)
+
+# def palindrome(text):
+#     word = text.lower().strip()
+#     if word == word[::-1]:
+#         return f"{word} is Palindrome"
+#     else:
+#         return f"{word} is not Palindrome"
+
+# text = palindrome("Racecar")
+# print(text)
+
+
