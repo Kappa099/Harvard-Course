@@ -1,13 +1,20 @@
-camel = input("camelCase: ")
-snake = ""
+def main():
+    camel = input("camelCase: ")
+    print(snake_case(camel))
 
-first = True
-for character in camel:
-    if character.isupper():
-        if not first:  
-            snake += "_"
-        snake += character.lower()
-    else:
-        snake += character
-    first = False
-print(f"snake_case: {snake}")
+
+def snake_case(word):
+    snake = ""
+    first = True
+    for character in word:
+        if character.isupper():
+            if not first:  
+                snake += "_"
+            snake += character.lower()
+        else:
+            snake += character
+        first = False
+    return snake
+
+if __name__ == "__main__":
+    main()
