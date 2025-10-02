@@ -16,19 +16,18 @@ def is_valid(s):
     if not s.isalnum():
         return False
 
-    i = 0
     number_started = False
 
-    while i < len(s):
-        if s[i].isdigit():
+    for char in s:
+        if char.isdigit():
             if not number_started:
-                if s[i] == '0':
-                    return False  
+                if char == '0':
+                    return False
                 number_started = True
         elif number_started:
-            return False  
-        i += 1
+            return False
 
     return True
 
-main()
+if __name__ == "__main__":
+    main()
