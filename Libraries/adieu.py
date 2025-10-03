@@ -1,11 +1,10 @@
-import sys
 import inflect
 
 def main():
     p = inflect.engine()
     names = []
 
-    print("Enter names, one per line (Ctrl-D to end):")
+    print("Enter names, one per line (Ctrl+Z+Enter to end):")
     try:
         while True:
             name = input()
