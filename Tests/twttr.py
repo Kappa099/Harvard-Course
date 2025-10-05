@@ -3,8 +3,13 @@ def main():
     print(shorten(s))
 
 
-def shorten(word: str) -> str:
-    return "".join(ch for ch in word if ch.lower() not in "aeiou")
+def shorten(word):
+    vowels = "aeiouAEIOU"
+    result = ""
+    for char in word:
+        if char not in vowels:
+            result += char
+    return result
 
 
 if __name__ == "__main__":
