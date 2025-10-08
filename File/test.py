@@ -2,4 +2,4 @@ def lines():
     # Hello
 
     pass
-#should print out 2 liness
+#should print out 2 lines
