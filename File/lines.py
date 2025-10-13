@@ -13,14 +13,11 @@ if not os.path.isfile(filename):
     sys.exit(f"Error: File '{filename}' does not exist")
 
 loc = 0
-try:
-    with open(filename, 'r') as file:
-        for line in file:
-            stripped = line.lstrip()
-            if stripped == "" or stripped.startswith("#"):
-                continue
-            loc += 1
-except FileNotFoundError:
-    sys.exit(f"Error: File '{filename}' not found")
+with open(filename, 'r') as file:
+    for line in file:
+        stripped = line.lstrip()
+        if stripped.strip() == "" or stripped.startswith("#"):
+            continue
+        loc += 1
 
 print(loc)
