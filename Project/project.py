@@ -84,19 +84,24 @@ def show_message(text, color):
     drawer.write(text, align="center", font=("Arial", 50, "bold"))
     drawer.color("black")
 
-easy_mode = ["cat", "dog", "sun", "book", "tree"]
-hard_mode = ["python", "castle", "planet", "guitar", "flower"]
-expert_mode = ["directory", "hangman", "syllable", "elephant", "beatles"]
+def load_words(filename):
+    try:
+        with open(filename, "r", encoding="utf-8") as f:
+            words = [line.strip() for line in f if line.strip()]
+        return words
+    except FileNotFoundError:
+        print(f"Error: {filename} not found.")
+        return []
 
 def choose_difficulty():
     while True:
         choice = input("Choose difficulty (easy, hard, expert): ").lower()
         if choice == "easy":
-            return easy_mode
+            return load_words("words_easy.txt")
         elif choice == "hard":
-            return hard_mode
+            return load_words("words_hard.txt")
         elif choice == "expert":
-            return expert_mode
+            return load_words("words_expert.txt")
         else:
             print("Invalid choice. Please type easy, hard, or expert.")
 

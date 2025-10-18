@@ -28,14 +28,24 @@ def test_guesser_multiple():
 def test_guesser_repeated():
     hidden = ["_"] * 6
     lives = project.guesser("t", "letter", hidden, 6)
-    assert hidden == ["_", "t", "t", "_", "_", "_"]
+    assert hidden == ["_", "_", "t", "t", "_", "_"]
     assert lives == 6
 
 def test_correct_answer(monkeypatch):
     monkeypatch.setattr("random.choice", lambda x: "python")
-    assert project.correct_answer(project.hard_mode) == "python"
+    word_list = ["python", "castle", "planet"]
+    assert project.correct_answer(word_list) == "python"
 
 def test_correct_answer_from_list():
     word_list = ["alpha", "beta", "gamma"]
     result = project.correct_answer(word_list)
     assert result in word_list
+
+def test_load_words(tmp_path):
+    d = tmp_path / "data"
+    d.mkdir()
+    f = d / "words.txt"
+    f.write_text("apple\nbanana\ncarrot\n")
+
+    words = project.load_words(str(f))
+    assert words == ["apple", "banana", "carrot"]
