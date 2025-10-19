@@ -67,6 +67,9 @@ If I were to extend this project, I would consider:
 ---
 
 ### How to Run
+Clone this repository (or download the project files):
+- git clone https://github.com/Kappa099/Harvard-Course.git
+- cd Project
+- Run the game:
+- python project.py
 
-```bash
-python project.py

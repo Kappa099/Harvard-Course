@@ -4,14 +4,14 @@ import turtle
 # turtle model
 drawer = turtle.Turtle()  
 drawer.hideturtle()       
-drawer.speed(0)           
+drawer.speed(0)
 
 # turtle model
 def setup_turtle(): 
     turtle.bgcolor("white") 
-    drawer.clear()           
+    drawer.clear()          
     drawer.pensize(5)        
-    draw_gallows()          
+    draw_gallows()   
 
 # turtle model
 def draw_gallows():
@@ -58,7 +58,7 @@ def draw_hangman(lives_left):
         drawer.pendown()     
         drawer.forward(30)   
     elif lives_left == 2:
-        drawer.penup()       
+        drawer.penup()     
         drawer.goto(50, 50)  
         drawer.setheading(-135) 
         drawer.pendown()     
@@ -136,8 +136,8 @@ def main():
         setup_turtle()
 
         word_list = choose_difficulty()
-        sityva = correct_answer(word_list)
-        hidden = encrypt(sityva)
+        phrase = correct_answer(word_list)
+        hidden = encrypt(phrase)
         lives = 6
         guessed_letters = []
 
@@ -154,7 +154,7 @@ def main():
                 continue
 
             guessed_letters.append(game)
-            lives = guesser(game, sityva, hidden, lives)
+            lives = guesser(game, phrase, hidden, lives)
 
             if "_" not in hidden:
                 print("You won!")
@@ -162,7 +162,7 @@ def main():
                 break
 
             if lives == 0:
-                print(f"Game Over! The word was: '{sityva}'.")
+                print(f"Game Over! The word was: '{phrase}'.")
                 show_message("You lost! Try again!", "red")  
                 break
 
