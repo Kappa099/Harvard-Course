@@ -1,75 +1,64 @@
 # Hangman Game
 
-#### Video Demo: <URL HERE>
-#### Description:
+#### Video Demo: (https://youtu.be/VWbF6OkFp2M)
 
-This project is my final submission for Harvard’s CS50P course. It is a Python implementation of the classic Hangman game, enhanced with Turtle graphics for visual feedback. The program randomly selects a word from a predefined list, and the player attempts to guess the word one letter at a time. Each incorrect guess reduces the number of lives and draws another part of the hangman figure. The game ends when the player either guesses the word correctly or runs out of lives.
+### Description
 
-The project demonstrates my ability to combine Python’s standard library modules (`random` and `turtle`) with structured program design and automated testing using `pytest`. It goes beyond a simple console game by integrating graphics, modular functions, and a test suite to ensure correctness.
+This is my final project for CS50P. I decided to build a version of Hangman because it’s a simple game that almost everyone knows, but it gave me room to combine different parts of Python into one project. Instead of keeping it text‑only, I used the `turtle` module to draw the gallows and the hangman figure as the game progresses. That way, each wrong guess doesn’t just reduce a counter — you actually see the figure being drawn step by step.
 
----
-
-### Overview
-
-The game begins by selecting a random word from a predefined list. The word is displayed as underscores, and the player guesses one letter at a time. Correct guesses reveal letters in their positions, while incorrect guesses reduce the number of lives and trigger Turtle graphics to draw parts of the hangman. The player wins if they reveal the entire word before running out of lives, and loses otherwise. After each round, the player is prompted to play again.
+At the start of the game, the player chooses a difficulty: **easy**, **hard**, or **expert**. Each difficulty has its own word list (`words_easy.txt`, `words_hard.txt`, `words_expert.txt`). A random word is picked from the chosen list, and the player guesses letters one at a time. Correct guesses reveal letters in the word, while wrong guesses cost a life and add another piece to the hangman drawing. The game ends when the word is guessed or the player runs out of lives. After each round, the player can choose to play again.
 
 ---
 
-### Project Structure
+### Files
 
-- **`project.py`**  
-  Contains the main game logic and all supporting functions.  
-  - `main()` — orchestrates the game loop, handles user input, and manages win/lose conditions.  
-  - `setup_turtle()` — initializes the Turtle graphics window and prepares the gallows.  
-  - `draw_gallows()` — draws the base structure of the gallows.  
-  - `draw_hangman(lives_left)` — draws the hangman figure step by step as lives decrease.  
-  - `show_message(text, color)` — displays win/lose messages on the screen.  
-  - `correct_answer()` — randomly selects a word from a predefined list.  
-  - `encrypt(word)` — converts the chosen word into a hidden list of underscores.  
-  - `guesser(char, chosen, hidden, lives)` — updates the hidden word if the guess is correct, or decreases lives if incorrect.  
-  - `play_again()` — prompts the user to play another round.
+- **project.py**
+  Main game file. Includes:
+  - `main()` – runs the game loop
+  - `choose_difficulty()` – loads the right word list
+  - `encrypt()` – hides the word as underscores
+  - `guesser()` – checks guesses and updates lives
+  - Drawing functions (`setup_turtle`, `draw_gallows`, `draw_hangman`, `show_message`)
 
-- **`test_project.py`**  
-  Contains automated tests written with `pytest`. These tests verify the correctness of the core logic functions:
-  - `test_encrypt_*` — ensures words are properly hidden as underscores.  
-  - `test_guesser_*` — checks correct guesses, incorrect guesses, and repeated letters.  
-  - `test_correct_answer()` — ensures the chosen word is always from the allowed list (using `monkeypatch` for determinism).
+- **test_project.py**
+  Contains `pytest` tests for the core logic:
+  - Tests for `encrypt`
+  - Tests for `guesser` (correct, incorrect, repeated letters)
+  - Tests for `correct_answer` and `load_words`
 
-- **`requirements.txt`**  
-  Lists external dependencies. For this project, only `pytest` is required, since all other modules come from Python’s standard library.
+- **words_easy.txt**, **words_hard.txt**, **words_expert.txt**
+  Word lists for each difficulty.
+
+- **requirements.txt**
+  Only includes `pytest`.
 
 ---
 
-### Design Choices
+### Design
 
-I chose to use Turtle graphics to make the game more engaging and visually appealing. While a text‑only version of Hangman would have been simpler, adding graphics demonstrates my ability to integrate multiple parts of Python’s ecosystem. The game logic is separated into small, testable functions, which makes the code easier to maintain and extend.
+I wanted the game to be structured in a way that separates logic from graphics. The drawing functions handle visuals, while functions like `encrypt`, `guesser`, and `load_words` return values that can be tested. This made it possible to write automated tests without needing to simulate the whole game loop.
 
-For testing, I focused on the functions that return values (`encrypt`, `guesser`, `correct_answer`). Functions that only draw graphics (`draw_gallows`, `draw_hangman`, `show_message`) are not unit‑tested, since they do not return values and are primarily visual. This separation of logic and graphics was an intentional design decision.
+The difficulty system was added to make the game more replayable. Easy mode has shorter and simpler words, while expert mode includes longer or trickier words. This gives players a reason to come back and try again at a higher level.
+
+I also tried to keep the code modular. Each function does one thing: loading words, checking guesses, or drawing a specific part of the hangman. That made it easier to debug and also easier to test.
 
 ---
 
 ### Challenges and Lessons Learned
 
-One challenge was ensuring that repeated letters in a word (such as the two “t”s in “letter”) were revealed correctly when guessed. Another was balancing the interactive nature of the game with the need for automated testing. By isolating the logic into pure functions, I was able to write meaningful tests without needing to simulate the entire game loop.
+One challenge was handling repeated letters correctly. For example, in the word *letter*, guessing “t” should reveal both positions at once. I had to make sure the loop that checks guesses updated every matching index, not just the first one.
 
-I also learned the importance of keeping `requirements.txt` minimal. At first, I generated a full environment freeze, which included many unrelated packages. I refined it to include only `pytest`, which is all that is needed to run the tests.
+Another challenge was balancing interactivity with testability. Games are usually hard to test because they rely on user input, but by splitting the logic into small functions, I could test the important parts in isolation. For example, `guesser()` can be tested with a fake word and hidden list without running the whole game.
 
----
-
-### Future Improvements
-
-If I were to extend this project, I would consider:
-- Adding difficulty levels with different word lists.  
-- Implementing a scoring system that tracks wins and losses across sessions.  
-- Allowing players to provide their own custom word lists.  
-- Saving results to a file or database for persistence.  
+I also learned to keep `requirements.txt` minimal. At first I included too many packages, but in the end the only extra tool needed was `pytest`.
 
 ---
 
 ### How to Run
-Clone this repository (or download the project files):
-- git clone https://github.com/Kappa099/Harvard-Course.git
-- cd Project
-- Run the game:
-- python project.py
 
+Clone the repo and run the game:
+
+```bash
+git clone https://github.com/Kappa099/Harvard-Course.git
+cd Project
+python project.py
