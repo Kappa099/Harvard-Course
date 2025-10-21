@@ -6,7 +6,7 @@ def machine():
     due = 50
 
     while due > 0:
-        print(f"Amount Due {due}")
+        print(f"Amount Due: {due}")
         coin = int(input("Insert Coin: "))
         if coin not in [25, 10, 5]:
             print("Machine only allows 25, 10 and 5 cents")
