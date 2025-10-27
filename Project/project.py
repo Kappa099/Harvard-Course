@@ -2,79 +2,79 @@ import random
 import turtle
 
 # turtle model
-drawer = turtle.Turtle()  
-drawer.hideturtle()       
+drawer = turtle.Turtle()
+drawer.hideturtle()
 drawer.speed(0)
 
 # turtle model
-def setup_turtle(): 
-    turtle.bgcolor("white") 
-    drawer.clear()          
-    drawer.pensize(5)        
-    draw_gallows()   
+def setup_turtle():
+    turtle.bgcolor("white")
+    drawer.clear()
+    drawer.pensize(5)
+    draw_gallows()
 
 # turtle model
 def draw_gallows():
     # Base
-    drawer.penup()           
-    drawer.goto(-100, -150)  
-    drawer.setheading(0)     
-    drawer.pendown()         
-    drawer.forward(200)      
+    drawer.penup()
+    drawer.goto(-100, -150)
+    drawer.setheading(0)
+    drawer.pendown()
+    drawer.forward(200)
 
     # Pole
-    drawer.penup()           
-    drawer.goto(-50, -150)   
-    drawer.setheading(90)    
-    drawer.pendown()         
-    drawer.forward(250)      
+    drawer.penup()
+    drawer.goto(-50, -150)
+    drawer.setheading(90)
+    drawer.pendown()
+    drawer.forward(250)
 
     # Top bar
-    drawer.right(90)         
-    drawer.forward(100)      
+    drawer.right(90)
+    drawer.forward(100)
 
     # Rope
-    drawer.right(90)         
-    drawer.forward(30)       
+    drawer.right(90)
+    drawer.forward(30)
 
 # turtle model
 def draw_hangman(lives_left):
     if lives_left == 5:
-        drawer.penup()       
-        drawer.goto(50, 70)  
-        drawer.setheading(0) 
-        drawer.pendown()     
-        drawer.circle(20)    
+        drawer.penup()
+        drawer.goto(50, 70)
+        drawer.setheading(0)
+        drawer.pendown()
+        drawer.circle(20)
     elif lives_left == 4:
-        drawer.penup()       
-        drawer.goto(50, 70)  
-        drawer.setheading(-90)  
-        drawer.pendown()     
-        drawer.forward(50)   
+        drawer.penup()
+        drawer.goto(50, 70)
+        drawer.setheading(-90)
+        drawer.pendown()
+        drawer.forward(50)
     elif lives_left == 3:
-        drawer.penup()       
-        drawer.goto(50, 50)  
-        drawer.setheading(-45)  
-        drawer.pendown()     
-        drawer.forward(30)   
+        drawer.penup()
+        drawer.goto(50, 50)
+        drawer.setheading(-45)
+        drawer.pendown()
+        drawer.forward(30)
     elif lives_left == 2:
-        drawer.penup()     
-        drawer.goto(50, 50)  
-        drawer.setheading(-135) 
-        drawer.pendown()     
-        drawer.forward(30)   
+        drawer.penup()
+        drawer.goto(50, 50)
+        drawer.setheading(-135)
+        drawer.pendown()
+        drawer.forward(30)
     elif lives_left == 1:
-        drawer.penup()       
-        drawer.goto(50, 20)  
-        drawer.setheading(-45)  
-        drawer.pendown()     
-        drawer.forward(30)   
+        drawer.penup()
+        drawer.goto(50, 20)
+        drawer.setheading(-45)
+        drawer.pendown()
+        drawer.forward(30)
     elif lives_left == 0:
-        drawer.penup()       
-        drawer.goto(50, 20)  
-        drawer.setheading(-135) 
-        drawer.pendown()     
-        drawer.forward(30)   
+        drawer.penup()
+        drawer.goto(50, 20)
+        drawer.setheading(-135)
+        drawer.pendown()
+        drawer.forward(30)
 
 # turtle model
 def show_message(text, color):
@@ -163,7 +163,7 @@ def main():
 
             if lives == 0:
                 print(f"Game Over! The word was: '{phrase}'.")
-                show_message("You lost! Try again!", "red")  
+                show_message("You lost! Try again!", "red")
                 break
 
         if not play_again():

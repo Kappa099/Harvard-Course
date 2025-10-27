@@ -22,9 +22,11 @@ At the start of the game, the player chooses a difficulty: **easy**, **hard**, o
 
 - **test_project.py**
   Contains `pytest` tests for the core logic:
-  - Tests for `encrypt`
-  - Tests for `guesser` (correct, incorrect, repeated letters)
-  - Tests for `correct_answer` and `load_words`
+  - Tests for `encrypt()` - verifies hidden word initialization
+  - Tests for `guesser()` - validates correct guesses, incorrect guesses, and repeated letters
+  - Tests for `correct_answer()` - ensures random word selection works
+  - Tests for `load_words()` - verifies word file loading
+  - Uses `monkeypatch` to mock `draw_hangman()` and prevent turtle graphics from interfering with tests
 
 - **words_easy.txt**, **words_hard.txt**, **words_expert.txt**
   Word lists for each difficulty.

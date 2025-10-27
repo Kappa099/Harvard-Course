@@ -7,25 +7,34 @@ def test_encrypt_basic():
 def test_encrypt_empty():
     assert project.encrypt("") == []
 
-def test_guesser_correct():
+def test_guesser_correct(monkeypatch, capsys):
+    # Mock draw_hangman to prevent any turtle graphics issues
+    monkeypatch.setattr("project.draw_hangman", lambda x: None)
+    
     hidden = ["_"] * 6
     lives = project.guesser("p", "python", hidden, 6)
     assert hidden == ["p", "_", "_", "_", "_", "_"]
     assert lives == 6
 
-def test_guesser_incorrect():
+def test_guesser_incorrect(monkeypatch, capsys):
+    monkeypatch.setattr("project.draw_hangman", lambda x: None)
+    
     hidden = ["_"] * 6
     lives = project.guesser("z", "python", hidden, 6)
     assert hidden == ["_"] * 6
     assert lives == 5
 
-def test_guesser_multiple():
+def test_guesser_multiple(monkeypatch, capsys):
+    monkeypatch.setattr("project.draw_hangman", lambda x: None)
+    
     hidden = ["_"] * 6
     lives = project.guesser("o", "python", hidden, 6)
     assert hidden == ["_", "_", "_", "_", "o", "_"]
     assert lives == 6
 
-def test_guesser_repeated():
+def test_guesser_repeated(monkeypatch, capsys):
+    monkeypatch.setattr("project.draw_hangman", lambda x: None)
+    
     hidden = ["_"] * 6
     lives = project.guesser("t", "letter", hidden, 6)
     assert hidden == ["_", "_", "t", "t", "_", "_"]
@@ -46,6 +55,6 @@ def test_load_words(tmp_path):
     d.mkdir()
     f = d / "words.txt"
     f.write_text("apple\nbanana\ncarrot\n")
-
+    
     words = project.load_words(str(f))
     assert words == ["apple", "banana", "carrot"]
